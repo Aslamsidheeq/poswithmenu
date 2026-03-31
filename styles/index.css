@@ -1,3 +1,79 @@
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
+
+#receipt-print {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: 58mm auto;
+    margin: 0;
+  }
+
+  html,
+  body {
+    width: 58mm;
+    background: #ffffff;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #receipt-print,
+  #receipt-print * {
+    visibility: visible;
+  }
+
+  #receipt-print {
+    display: block;
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 58mm;
+    padding: 3mm;
+    color: #000000;
+    background: #ffffff;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    line-height: 1.35;
+  }
+
+  .receipt-shop-name {
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 2mm;
+  }
+
+  .receipt-divider {
+    border-top: 1px dashed #000000;
+    margin: 2mm 0;
+  }
+
+  .receipt-item-row,
+  .receipt-summary-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 2mm;
+    margin-bottom: 1.5mm;
+  }
+
+  .receipt-item-name {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .receipt-item-price {
+    min-width: 16mm;
+    text-align: right;
+  }
+
+  .receipt-total-row {
+    font-weight: 700;
+    margin-top: 1mm;
+  }
+}
