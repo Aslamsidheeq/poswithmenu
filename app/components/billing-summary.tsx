@@ -17,9 +17,10 @@ interface BillingSummaryProps {
 }
 
 const SHOP_NAME = 'Grocery POS';
+const VAT_RATE = 0.05;
 
 export function BillingSummary({ cart, total, onRemoveItem, onClearCart, onAddIncrement, onPlaceOrder }: BillingSummaryProps) {
-  const subtotal = total;
+  const subtotal = total / (1 + VAT_RATE);
 
   return (
     <>
@@ -104,7 +105,7 @@ export function BillingSummary({ cart, total, onRemoveItem, onClearCart, onAddIn
               <span className="text-[#495057]">AED {subtotal.toFixed(2)}</span>
             </div>
             <div className="flex items-baseline justify-between pt-3 border-t border-[#dee2e6]">
-              <span className="text-[#2c3e50]">Total</span>
+              <span className="text-[#2c3e50]">Total (Incl. VAT)</span>
               <span className="text-[#6c5ce7]">AED {total.toFixed(2)}</span>
             </div>
           </div>
@@ -149,7 +150,7 @@ export function BillingSummary({ cart, total, onRemoveItem, onClearCart, onAddIn
           <span>{subtotal.toFixed(2)}</span>
         </div>
         <div className="receipt-summary-row receipt-total-row">
-          <span>Total</span>
+          <span>Total (Incl. VAT)</span>
           <span>{total.toFixed(2)}</span>
         </div>
       </div>
